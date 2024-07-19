@@ -1,0 +1,23 @@
+---
+// ImageGallery.astro
+import espressoRoastImg from '../images/p3.png';
+import coldBrewImg from '../images/p2.png';
+import singleOriginImg from '../images/p1.png';
+import lightRoastImg from '../images/p6.png';
+import decafDelightImg from '../images/p5.png';
+import paperCupsImg from '../images/QvANDxYNRLarn9xvK9YK0A.jpeg';
+import glassCupsImg from '../images/ycrbo_x9St2mTwRN6L2XpA.jpeg';
+
+export const products = [
+    { id: 1, name: "Espresso Roast", price: "$20.99", image: espressoRoastImg.src },
+    { id: 2, name: "Cold Brew", price: "$21.99", image: coldBrewImg.src },
+    { id: 3, name: "Single Origin", price: "$22.99", image: singleOriginImg.src },
+    { id: 4, name: "Light Roast", price: "$23.99", image: lightRoastImg.src },
+    { id: 5, name: "Decaf Delight", price: "$19.99", image: decafDelightImg.src }
+];
+
+export const newProducts = [
+    { id: 6, name: "Paper Coffee Cups", price: "New", image: paperCupsImg.src },
+    { id: 7, name: "Glass Coffee Cups", price: "New", image: glassCupsImg.src }
+];
+---

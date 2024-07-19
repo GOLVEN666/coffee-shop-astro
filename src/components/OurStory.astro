@@ -1,0 +1,53 @@
+---
+// Import the image
+import storyImage from '../images/YfW7nTzrSziuo6JklvBuzw.webp';
+---
+
+<section id="our-story" data-aos="fade-up">
+    <div class="container">
+        <h2>Our Story</h2>
+        <div class="story-content">
+            <div class="story-image">
+                <img src={storyImage.src} alt="قهوة خاترة - البداية">
+            </div>
+            <div class="story-text">
+                <p data-aos="fade-up" data-aos-delay="100">Our journey began in 2020 with a small mobile coffee cart in a quiet neighborhood. "Khatera Coffee" became a haven for everyone, young and old alike.</p>
+                <p data-aos="fade-up" data-aos-delay="300">Thanks to the exceptional quality of our coffee and the support of our loyal customers, our project quickly grew. Today, we are proud to own more than 64 branches across Morocco.</p>
+                <p data-aos="fade-up" data-aos-delay="500">We are committed to delivering the best coffee experience while maintaining our roots and original values.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style itemscope>
+  .story-content {
+    display: flex;
+    flex-direction: row; /* Default direction */
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .story-image img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .story-text {
+    padding: 0 15px;
+  }
+  
+  /* Adjustments for smaller screens */
+  @media (max-width: 768px) {
+    .story-content {
+      flex-direction: column; /* Stack elements vertically on small screens */
+    }
+  
+    .story-image, .story-text {
+      width: 100%; /* Full width for small screens */
+    }
+  
+    .story-text {
+      padding-top: 20px; /* Add some space between the image and text on small screens */
+    }
+  }
+  </style>

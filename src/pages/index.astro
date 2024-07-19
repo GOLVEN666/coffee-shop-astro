@@ -1,0 +1,147 @@
+---
+import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import OurStory from '../components/OurStory.astro';
+import Products from '../components/Products.astro';
+import Categories from '../components/Categories.astro';
+import NewProducts from '../components/NewProducts.astro';
+import Branches from '../components/Branches.astro';
+import Footer from '../components/Footer.astro';
+import { products, newProducts } from '../components/ImageGallery.astro';
+---
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Barn Coffee Roasters</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+    
+    <BaseLayout>
+        <Header />
+        <Hero />
+        <OurStory />
+        <Products products={products} />
+        <Categories />
+        <NewProducts newProducts={newProducts} />
+        <Branches />
+        <Footer />
+    </BaseLayout>
+
+    <script define:vars={{ products, newProducts }} >
+        document.addEventListener("DOMContentLoaded", () => {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 1200,
+                });
+            }
+
+            const createProductElement = (product, index) => {
+                const productElement = document.createElement("div");
+                productElement.classList.add("product");
+                productElement.setAttribute("data-aos", "fade-up");
+                productElement.setAttribute("data-aos-delay", index * 100);
+                productElement.innerHTML = `
+                    <img class="coffeeimg" src="${product.image}" alt="${product.name}">
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-price">${product.price}</p>
+                        <button class="order-now">Order Now</button>
+                    </div>
+                `;
+                return productElement;
+            };
+
+            const productGrid = document.getElementById("product-list");
+            if (productGrid) {
+                products.forEach((product, index) => productGrid.appendChild(createProductElement(product, index)));
+            }
+
+            const newProductGrid = document.getElementById("new-product-list");
+            if (newProductGrid) {
+                newProducts.forEach((product, index) => newProductGrid.appendChild(createProductElement(product, index)));
+            }
+        });
+
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const loadingOverlay = document.getElementById('loading-overlay');
+                if (loadingOverlay) {
+                    loadingOverlay.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingOverlay.style.display = 'none';
+                    }, 500);
+                }
+            }, 1500);
+        });
+
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (header) {
+                header.classList.toggle('scrolled', window.scrollY > 50);
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        const burger = document.querySelector('.burger');
+        if (burger) {
+            burger.addEventListener('click', () => {
+                const navLinks = document.querySelector('.nav-links');
+                if (navLinks) {
+                    navLinks.classList.toggle('nav-active');
+                    document.querySelectorAll('.burger div').forEach((line, index) => {
+                        if (navLinks.classList.contains('nav-active')) {
+                            // Apply transformations to make the burger icon an "X"
+                            if (index === 0) {
+                                line.style.transform = 'rotate(45deg) translate(50%, 50%)';
+                            } else if (index === 1) {
+                                line.style.opacity = '0'; // Middle line disappears
+                            } else if (index === 2) {
+                                line.style.transform = 'rotate(-45deg) translate(50%, -50%)';
+                            }
+                            line.classList.add('active');
+                        } else {
+                            // Revert to the initial burger icon state
+                            line.style.transform = '';
+                            line.style.opacity = '1';
+                            line.classList.remove('active');
+                        }
+                    });
+                }
+            });
+        }
+
+        if ('DeviceOrientationEvent' in window) {
+            window.addEventListener('deviceorientation', function(event) {
+                const alpha = event.alpha;
+                const beta = event.beta;
+                const gamma = event.gamma;
+                const rotateDeg = `rotateZ(${alpha}deg) rotateX(${beta}deg) rotateY(${gamma}deg)`;
+                document.querySelectorAll('.liquid').forEach(liquid => {
+                    liquid.style.transform = rotateDeg;
+                });
+            }, true);
+        } else {
+            console.log('DeviceOrientationEvent is not supported');
+        }
+    </script>
+</body>
+</html>

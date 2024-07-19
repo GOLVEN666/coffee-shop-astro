@@ -1,0 +1,202 @@
+---
+import { onMount } from 'solid-js';
+
+onMount(() => {
+  const nav = document.querySelector('nav');
+  const burger = document.querySelector('.burger');
+  const navLinks = document.querySelector('.nav-links');
+  const navLinksItems = document.querySelectorAll('.nav-links li');
+
+  const handleScroll = () => {
+    if (window.scrollY > 50) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  };
+
+  const toggleNav = () => {
+    navLinks.classList.toggle('nav-active');
+    burger.classList.toggle('toggle');
+  };
+
+  burger.addEventListener('click', toggleNav);
+
+  navLinksItems.forEach(item => {
+    item.addEventListener('click', () => {
+      navLinks.classList.remove('nav-active');
+      burger.classList.remove('toggle');
+    });
+  });
+
+  window.addEventListener('scroll', handleScroll);
+});
+---
+
+<header>
+  <nav class="container">
+    <div class="logo">THE BEAN</div>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="#our-story">Our Story</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#categories">More Categories</a></li>
+      <li><a href="#new-products">Top New Products</a></li>
+      <li><a href="#branches">Branches</a></li>
+      <li><a href="#footer">Contact</a></li>
+    </ul>
+    <div class="burger">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </nav>
+</header>
+
+<style>
+  header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: background-color 0.3s;
+  }
+
+
+  nav.scrolled {
+    background-color: #333;
+    color: white;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+  }
+
+  .nav-links li {
+    margin-left: 2rem;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover {
+    color: var(--primary-color);
+  }
+
+  .burger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+  }
+
+  .burger div {
+    background-color: white;
+    margin: 4px;
+    transition: all 0.3s ease;
+  }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      position: absolute;
+      right: 0;
+      height: 100vh;
+      top: 0;
+      background-color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in;
+    }
+
+    .nav-links.nav-active {
+      transform: translateX(0);
+    }
+
+    .nav-links li {
+      margin: 1rem 0;
+    }
+
+    .nav-links a {
+      color: white;
+      font-size: 1.5rem;
+    }
+
+    .burger {
+      display: flex;
+    }
+
+    .burger.toggle div:nth-child(1) {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .burger.toggle div:nth-child(2) {
+      opacity: 0;
+    }
+
+    .burger.toggle div:nth-child(3) {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+  }
+</style>
+
+
+
+<!-- ---
+import { onMount } from 'solid-js';
+
+onMount(() => {
+  const nav = document.querySelector('nav');
+  const burger = document.querySelector('.burger');
+  const navLinks = document.querySelector('.nav-links');
+
+  const handleScroll = () => {
+    if (window.scrollY > 50) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  };
+
+  burger.addEventListener('click', () => {
+    navLinks.classList.toggle('nav-active');
+    burger.classList.toggle('toggle');
+  });
+
+  window.addEventListener('scroll', handleScroll);
+});
+---
+
+<header>
+  <nav class="container">
+    <div class="logo">THE BEAN</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#our-story">Our Story</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#categories">More Categories</a></li>
+      <li><a href="#new-products">Top New Products</a></li>
+      <li><a href="#branches">Branches</a></li>
+      <li><a href="#footer">Contact</a></li>
+    </ul>
+    <div class="burger">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </nav>
+</header> -->

@@ -1,0 +1,26 @@
+---
+import 'aos/dist/aos.css'; // Import AOS styles
+---
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Site Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+</head>
+<body>
+    <slot />
+    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script is:inline>
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({
+                // duration: 800,
+                // easing: 'ease-in-out',
+                // once: true,
+                // mirror: false
+            });
+        });
+    </script>
+</body>
+</html>

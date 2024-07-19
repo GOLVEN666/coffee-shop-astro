@@ -1,0 +1,56 @@
+---
+import heroVideo from '../images/y2mate.com - Coffee reels  macro videos_1080p.mp4';
+---
+
+<!-- <section id="hero">
+    <video autoplay muted loop playsinline id="heroVideo" style="width:100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
+        <source src={heroVideo} type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="container hero-content" style="position: relative; z-index: 1;">
+        <h1>Discover Exceptional Coffee</h1>
+        <p>Expertly roasted, ethically sourced</p>
+        <a href="#products" class="btn">
+            <b>
+                <span>Shop Now</span>
+                <div class="liquid"></div>
+            </b>
+        </a>
+    </div>
+</section> -->
+
+
+<section id="hero">
+    <video id="heroVideo" style="width:100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;" muted playsinline>
+        <source src={heroVideo} type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="container hero-content" style="position: relative; z-index: 1;">
+        <h1>Discover Exceptional Coffee</h1>
+        <p>Expertly roasted, ethically sourced</p>
+        <a href="#products" class="btn">
+            <b>
+                <span>Shop Now</span>
+                <div class="liquid"></div>
+            </b>
+        </a>
+    </div>
+</section>
+
+<script>
+    const video = document.getElementById('heroVideo') as HTMLVideoElement;
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        });
+    }, {
+        threshold: 0.3
+    });
+
+    observer.observe(video);
+</script>
