@@ -79,7 +79,7 @@ This project is distributed under the MIT License. See `LICENSE` for more inform
 
 Golven666 - [achraf.xchahid@gmail.com](mailto:achraf.xchahid@gmail.com)
 
-Project Link: [https://github.com/GOLVEN666/coffee-shop](https://github.com/GOLVEN666/coffee-shop-astro)
+Project Link: [https://github.com/GOLVEN666/coffee-shop-astro](https://github.com/GOLVEN666/coffee-shop-astro)
 
 ## Acknowledgements
 
